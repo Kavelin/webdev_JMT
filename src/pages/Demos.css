@@ -1,0 +1,139 @@
+.demos {
+  position: relative;
+  padding: 40px 32px 80px;
+}
+
+.demos__heading {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-jua);
+  font-weight: 400;
+  font-size: clamp(40px, 4vw, 64px);
+  text-align: center;
+  margin: 0 0 48px;
+  letter-spacing: 1px;
+}
+
+.demos__grid {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.demos__card {
+  position: relative;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #1a1a1a;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+}
+
+.demos__card video,
+.demos__card iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  display: block;
+}
+
+.demos__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  border: 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.demos__play:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.demos__play-icon {
+  width: 100px;
+  height: 108px;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+  transition: transform 0.2s ease;
+}
+
+.demos__play:hover .demos__play-icon {
+  transform: scale(1.1);
+}
+
+.demos__card-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 24px;
+  font-family: var(--font-jua);
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.demos__clients {
+  position: relative;
+  z-index: 1;
+  margin: 80px auto 0;
+  max-width: 1280px;
+}
+
+.demos__clients h2 {
+  font-family: var(--font-jua);
+  font-weight: 400;
+  font-size: clamp(40px, 4vw, 64px);
+  margin: 0 0 32px;
+  letter-spacing: 1px;
+}
+
+.demos__clients-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.demos__client {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  aspect-ratio: 652 / 402;
+  transition: transform 0.2s ease;
+}
+
+.demos__client:hover {
+  transform: translateY(-4px);
+}
+
+.demos__client-logo {
+  font-family: var(--font-gabarito);
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 32px);
+  color: var(--indigo-deep);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .demos__grid {
+    grid-template-columns: 1fr;
+  }
+  .demos__clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
