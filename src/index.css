@@ -23,6 +23,29 @@
   box-sizing: border-box;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: var(--pink) #fff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--pink);
+  border-radius: 10px;
+  border: 3px solid #fff;
+}
+
+
 html,
 body,
 #root {
@@ -57,4 +80,3 @@ ul {
   padding: 0;
   list-style: none;
 }
-

@@ -36,7 +36,6 @@ const pageVariants: Variants = {
   }),
 };
 
-// Faster and less bouncy.
 const pageTransition = {
   type: "spring" as const,
   stiffness: 420,
@@ -49,16 +48,16 @@ const introVariants: Variants = {
   hidden: {
     opacity: 0,
     scale: 0.92,
-    y: 35,
+    x: 35,
   },
 
   visible: {
     opacity: 1,
     scale: 1,
-    y: 0,
+    x: 0,
     transition: {
       type: "spring",
-      stiffness: 280,
+      stiffness: 150,
       damping: 24,
       mass: 0.5,
     },
