@@ -1,4 +1,6 @@
 import { type FormEvent, useState } from "react";
+// Backgrounds from /public (verbatim Figma nodes 21:167 + 21:184)
+import SocialRow from "../components/SocialRow";
 import "./Contact.css";
 
 type FormState = {
@@ -16,8 +18,6 @@ export default function Contact() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
-    // Open the user's mail client with their message prefilled. Replace
-    // with a proper backend integration (Formspree / Resend / etc.) when ready.
     const subject = encodeURIComponent(
       `Voice Acting Inquiry from ${form.name}`,
     );
@@ -30,7 +30,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="contact">
+    <section className="contact">
       <form className="contact__card" onSubmit={onSubmit}>
         <h2 className="contact__title">Let&rsquo;s Get In Touch!</h2>
 
@@ -85,18 +85,18 @@ export default function Contact() {
         </button>
       </form>
 
-      {/* Figma reference: scattered bubbles behind the contact card.
-          Reproduced as soft circles so the design intent survives. */}
+      <SocialRow />
+
+      {/* Background from Figma node 21:184 — soft peach/red bubbles. */}
       <div className="contact__bubbles" aria-hidden="true">
-        <svg viewBox="0 0 1440 1080" preserveAspectRatio="none">
-          <circle cx="240" cy="380" r="120" fill="rgba(255,255,255,0.4)" />
-          <circle cx="370" cy="300" r="80" fill="rgba(255,255,255,0.5)" />
-          <circle cx="320" cy="600" r="60" fill="rgba(255,255,255,0.55)" />
-          <circle cx="1200" cy="280" r="120" fill="rgba(255,255,255,0.4)" />
-          <circle cx="1240" cy="480" r="80" fill="rgba(255,255,255,0.5)" />
-          <circle cx="1300" cy="400" r="60" fill="rgba(255,255,255,0.55)" />
-        </svg>
+        <img src="/bg-contact-bubbles.svg" alt="" />
       </div>
-    </main>
+
+      {/* Background from Figma node 21:167 — large peach-to-pink gradient
+          blob anchored to the bottom. */}
+      <div className="contact__bg" aria-hidden="true">
+        <img src="/bg-contact.svg" alt="" />
+      </div>
+    </section>
   );
 }

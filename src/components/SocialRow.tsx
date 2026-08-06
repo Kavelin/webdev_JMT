@@ -11,14 +11,14 @@ const SOCIALS = [
     icon: phoneIcon,
   },
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/josemanueltorres",
-    icon: linkedinIcon,
-  },
-  {
     label: "Email",
     href: "mailto:hello@jm-torres.com",
     icon: emailIcon,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/josemanueltorres",
+    icon: linkedinIcon,
   },
   {
     label: "X / Twitter",

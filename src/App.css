@@ -2,4 +2,16 @@
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
+  /* Adds a subtle 3D feel to the page-flip rotations. */
+  perspective: 1400px;
+}
+
+.app__page {
+  position: relative;
+  /* Pull the rotation pivot toward the bottom of the page so the flip
+     feels more like a card flipping than the whole sheet pivoting. */
+  transform-origin: 50% 90%;
+  /* Make sure children paint above the absolutely-positioned SVG bg. */
+  isolation: isolate;
+  will-change: transform, opacity;
 }

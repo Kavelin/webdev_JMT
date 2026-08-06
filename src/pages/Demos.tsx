@@ -1,5 +1,6 @@
 import { useState } from "react";
 import playTriangle from "../assets/icons/play-triangle.svg";
+// Background from /public/bg-demos.svg (verbatim Figma node 21:172)
 import "./Demos.css";
 
 type Demo = {
@@ -7,7 +8,6 @@ type Demo = {
   title: string;
   src: string;
   type: "video" | "audio";
-  poster?: string;
 };
 
 const DEMOS: Demo[] = [
@@ -16,7 +16,6 @@ const DEMOS: Demo[] = [
     title: "Visual Reel 2023",
     src: "/JM Torres - Visual Reel 2023.mp4",
     type: "video",
-    poster: undefined,
   },
   {
     id: "live-action",
@@ -39,12 +38,12 @@ const DEMOS: Demo[] = [
 ];
 
 const CLIENTS = [
-  { name: "Netflix", accent: "#e50914" },
-  { name: "Xilam", accent: "#0072c6" },
-  { name: "Hit Productions", accent: "#2c3170" },
-  { name: "Iyuno SDI Group", accent: "#fdb913" },
-  { name: "Casting Call Club", accent: "#2c3170" },
-  { name: "MZA Talent", accent: "#222" },
+  { name: "Netflix", accent: "#e50914", src: "/clients/netflix.png"},
+  { name: "Xilam", accent: "#0072c6", src: "/clients/xilam.png" },
+  { name: "Hit Productions", accent: "#2c3170" , src: "/clients/hitproductions.png"},
+  { name: "Iyuno SDI Group", accent: "#fdb913" , src: "/clients/iyunosdigroup.png"},
+  { name: "Sound Weavers", accent: "#2c3170", src: "/clients/soundweavers.jpg" },
+  { name: "SOUNDESIGN", accent: "#222" , src: "/clients/soundesignmanila.jpg"},
 ];
 
 function DemoCard({ demo }: { demo: Demo }) {
@@ -67,7 +66,7 @@ function DemoCard({ demo }: { demo: Demo }) {
             controls
             autoPlay
             onEnded={() => setPlaying(false)}
-            style={{ width: "80%" }}
+            className="demos__audio"
           />
         )
       ) : (
@@ -89,7 +88,7 @@ function DemoCard({ demo }: { demo: Demo }) {
 
 export default function Demos() {
   return (
-    <main className="demos">
+    <section className="demos">
       <h2 className="demos__heading">DEMO VIDEOS:</h2>
       <div className="demos__grid">
         {DEMOS.map((demo) => (
@@ -106,11 +105,18 @@ export default function Demos() {
               className="demos__client"
               style={{ borderTop: `4px solid ${client.accent}` }}
             >
-              <span className="demos__client-logo">{client.name}</span>
+              { /* <span className="demos__client-logo">{client.name}</span> */ }
+              <img src={client.src} alt={client.name} />
             </div>
           ))}
         </div>
       </section>
-    </main>
+
+      {/* Background from Figma node 21:172 — three rotated rounded
+          rectangles with peach-to-pink gradient. */}
+      <div className="demos__bg" aria-hidden="true">
+        <img src="/bg-demos.svg" alt="" />
+      </div>
+    </section>
   );
 }
