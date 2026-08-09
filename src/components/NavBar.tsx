@@ -40,7 +40,7 @@ const navItemVariants: Variants = {
     scale: 1,
     transition: {
       type: "spring",
-      stiffness: 350,
+      stiffness: 200,
       damping: 18,
       mass: 0.6,
     },
@@ -49,9 +49,8 @@ const navItemVariants: Variants = {
 
 const logoVariants: Variants = {
   hidden: {
-    opacity: 0,
-    y: -30,
-    scale: 0.7,
+    opacity: 1,
+    scale: 0,
   },
 
   visible: {
@@ -60,7 +59,7 @@ const logoVariants: Variants = {
     scale: 1,
     transition: {
       type: "spring",
-      stiffness: 280,
+      stiffness: 200,
       damping: 17,
       mass: 0.8,
     },

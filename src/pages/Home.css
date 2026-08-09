@@ -109,6 +109,28 @@
   opacity: 0.95;
 }
 
+
+@keyframes parallax {
+  from {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  to {
+    transform: translateX(-50%) translateY(-40px);
+  }
+}
+
+
+@supports (animation-timeline: view()) {
+    .home__bg {
+        animation-name: parallax;
+        animation-fill-mode: forwards;
+        animation-duration: 1s;
+        animation-timeline: --scroll;
+        animation-range: entry 100% exit 0%;
+    }
+}
+
 .home__bg img {
   width: 100%;
   height: auto;

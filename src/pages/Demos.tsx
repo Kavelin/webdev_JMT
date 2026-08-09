@@ -1,6 +1,6 @@
 import { useState } from "react";
 import playTriangle from "../assets/icons/play-triangle.svg";
-// Background from /public/bg-demos.svg (verbatim Figma node 21:172)
+import bg from "../assets/backgrounds/bg-demos.svg";
 import "./Demos.css";
 
 type Demo = {
@@ -37,13 +37,19 @@ const DEMOS: Demo[] = [
   },
 ];
 
+import netflix from "../assets/clients/netflix.png";
+import xilam from "../assets/clients/xilam.png";
+import hitproductions from "../assets/clients/hitproductions.png";
+import iyunosdigroup from "../assets/clients/iyunosdigroup.png";
+import soundweavers from "../assets/clients/soundweavers.jpg";
+import soundesign from "../assets/clients/soundesignmanila.jpg";
 const CLIENTS = [
-  { name: "Netflix", accent: "#e50914", src: "/clients/netflix.png"},
-  { name: "Xilam", accent: "#0072c6", src: "/clients/xilam.png" },
-  { name: "Hit Productions", accent: "#2c3170" , src: "/clients/hitproductions.png"},
-  { name: "Iyuno SDI Group", accent: "#fdb913" , src: "/clients/iyunosdigroup.png"},
-  { name: "Sound Weavers", accent: "#2c3170", src: "/clients/soundweavers.jpg" },
-  { name: "SOUNDESIGN", accent: "#222" , src: "/clients/soundesignmanila.jpg"},
+  { name: "Netflix", accent: "#e50914", src: netflix },
+  { name: "Xilam", accent: "#0072c6", src: xilam },
+  { name: "Hit Productions", accent: "#2c3170", src: hitproductions },
+  { name: "Iyuno SDI Group", accent: "#fdb913", src: iyunosdigroup },
+  { name: "Sound Weavers", accent: "#2c3170", src: soundweavers },
+  { name: "SOUNDESIGN", accent: "#222", src: soundesign },
 ];
 
 function DemoCard({ demo }: { demo: Demo }) {
@@ -105,17 +111,15 @@ export default function Demos() {
               className="demos__client"
               style={{ borderTop: `4px solid ${client.accent}` }}
             >
-              { /* <span className="demos__client-logo">{client.name}</span> */ }
+              {/* <span className="demos__client-logo">{client.name}</span> */}
               <img src={client.src} alt={client.name} />
             </div>
           ))}
         </div>
       </section>
 
-      {/* Background from Figma node 21:172 — three rotated rounded
-          rectangles with peach-to-pink gradient. */}
       <div className="demos__bg" aria-hidden="true">
-        <img src="/bg-demos.svg" alt="" />
+        <img src={bg} alt="" />
       </div>
     </section>
   );

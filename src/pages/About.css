@@ -95,6 +95,28 @@
   pointer-events: none;
 }
 
+
+@keyframes parallax_about {
+  from {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  to {
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+
+@supports (animation-timeline: view()) {
+    .about__bg {
+        animation-name: parallax_about;
+        animation-fill-mode: forwards;
+        animation-duration: 1s;
+        animation-timeline: --scroll;
+        animation-range: entry 100% exit 0%;
+    }
+}
+
 .about__bg img {
   width: 100%;
   height: auto;

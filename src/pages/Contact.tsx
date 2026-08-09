@@ -1,5 +1,7 @@
 import { type FormEvent, useState } from "react";
-// Backgrounds from /public (verbatim Figma nodes 21:167 + 21:184)
+
+import bg from "../assets/backgrounds/bg-contact.svg";
+import bubbles from "../assets/backgrounds/bg-contact-bubbles.svg";
 import SocialRow from "../components/SocialRow";
 import "./Contact.css";
 
@@ -87,15 +89,12 @@ export default function Contact() {
 
       <SocialRow />
 
-      {/* Background from Figma node 21:184 — soft peach/red bubbles. */}
       <div className="contact__bubbles" aria-hidden="true">
-        <img src="/bg-contact-bubbles.svg" alt="" />
+        <img src={bubbles} alt="" />
       </div>
 
-      {/* Background from Figma node 21:167 — large peach-to-pink gradient
-          blob anchored to the bottom. */}
       <div className="contact__bg" aria-hidden="true">
-        <img src="/bg-contact.svg" alt="" />
+        <img src={bg} alt="" />
       </div>
     </section>
   );

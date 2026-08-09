@@ -1,5 +1,5 @@
 import resumeIcon from "../assets/icons/resume.svg";
-// Background from /public/bg-about.svg (verbatim Figma node 17:45)
+import bg from "../assets/backgrounds/bg-about.svg";
 import "./About.css";
 
 export default function About() {
@@ -41,7 +41,7 @@ export default function About() {
 
       {/* Background from Figma node 17:45 — verbatim SVG. */}
       <div className="about__bg" aria-hidden="true">
-        <img src="/bg-about.svg" alt="" />
+        <img src={bg} alt="" />
       </div>
     </section>
   );  

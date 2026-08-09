@@ -1,12 +1,12 @@
 import { useState } from "react";
-import visualReel from "/JM Torres Live Action VISUAL NETFLIX REEL.mp4";
 import playTriangle from "../assets/icons/play-triangle.svg";
 import SocialRow from "../components/SocialRow";
-// Background from /public/bg-home.svg (verbatim Figma node 14:86)
+import bg from "../assets/backgrounds/bg-home.svg";
 import "./Home.css";
 
 export default function Home() {
   const [playing, setPlaying] = useState(false);
+
 
   return (
     <section className="home">
@@ -18,7 +18,8 @@ export default function Home() {
         <div className="home__reel">
           {playing ? (
             <video
-              src={visualReel}
+             preload="none"
+              src="/JM Torres Live Action VISUAL NETFLIX REEL.mp4"
               controls
               autoPlay
               playsInline
@@ -56,10 +57,8 @@ export default function Home() {
 
       <SocialRow />
 
-      {/* Background from Figma node 14:86 — verbatim SVG with the original
-          peach-to-pink gradient. Anchored to the bottom of the page. */}
       <div className="home__bg" aria-hidden="true">
-        <img src="/bg-home.svg" alt="" />
+        <img src={bg} alt="" />
       </div>
     </section>
   );

@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { lazy, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Demos from "./pages/Demos";
-import Contact from "./pages/Contact";
+const Demos = lazy(() => import("./pages/Demos"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
 import "./App.css";
 
 // Stable route indices determine transition direction.
