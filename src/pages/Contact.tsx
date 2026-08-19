@@ -1,4 +1,4 @@
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useState, useRef, useEffect } from "react";
 
 import bg from "../assets/backgrounds/bg-contact.svg";
 import bubbles from "../assets/backgrounds/bg-contact-bubbles.svg";
@@ -15,20 +15,60 @@ const INITIAL: FormState = { name: "", email: "", message: "" };
 
 export default function Contact() {
   const [form, setForm] = useState<FormState>(INITIAL);
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [honeypot, setHoneypot] = useState("");
+  const loadTimeRef = useRef(Date.now());
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    loadTimeRef.current = Date.now();
+  }, []);
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Spam Protection: Quietly exit if honeypot was filled out
+    if (honeypot) {
+      setStatus("sent");
+      setForm(INITIAL);
+      return;
+    }
+
+    // Spam Protection: Reject submissions completed under 3 seconds
+    const timeSpent = (Date.now() - loadTimeRef.current) / 1000;
+    if (timeSpent < 3) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
-    const subject = encodeURIComponent(
-      `Voice Acting Inquiry from ${form.name}`,
-    );
-    const body = encodeURIComponent(
-      `From: ${form.name} <${form.email}>\n\n${form.message}`,
-    );
-    window.location.href = `mailto:hello@jm-torres.com?subject=${subject}&body=${body}`;
-    setStatus("sent");
-    setTimeout(() => setStatus("idle"), 3000);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/" + import.meta.env.VITE_EMAIL_KEY, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: `Voice Acting Inquiry from ${form.name}`,
+          _captcha: "true",
+          _honey: honeypot,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("sent");
+        setForm(INITIAL);
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+      }
+    } catch (err) {
+      setStatus("error");
+    }
   };
 
   return (
@@ -80,10 +120,38 @@ export default function Contact() {
           />
         </div>
 
-        <button className="contact__submit" type="submit">
+        {/* Hidden Honeypot Field for Spam Protection */}
+        <div
+          style={{
+            opacity: 0,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            height: 0,
+            width: 0,
+            zIndex: -1,
+          }}
+          aria-hidden="true"
+        >
+          <input
+            type="text"
+            name="_honey"
+            tabIndex={-1}
+            autoComplete="off"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+          />
+        </div>
+
+        <button
+          className="contact__submit"
+          type="submit"
+          disabled={status === "sending"}
+        >
           {status === "idle" && "Submit"}
           {status === "sending" && "Sending…"}
           {status === "sent" && "Thanks! ✓"}
+          {status === "error" && "Error! Try Again"}
         </button>
       </form>
 
